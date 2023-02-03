@@ -6,15 +6,17 @@ const FeatureProduct = (props) => {
   useEffect(() => {
     props.productAction();
   }, []);
-  console.log(props.productResponse)
+
+    console.log(props.productResponse)
+
   return (
     <Wrapper className="section">
       <div className="container">
         <div className="intro-data">Check Now!</div>
         <div className="common-heading">Our Feature Services</div>
         <div className="grid grid-three-column">
-          {props.productAction !== "" && props.productAction.data
-            ? props.productAction.data.map((curElem) => {
+          {props.productResponse !== "" && props.productResponse
+            ? props.productResponse.slice(0, 3).map((curElem) => {
                 return <Product key={curElem.id} {...curElem} />;
               })
             : null}

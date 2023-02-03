@@ -3,7 +3,7 @@ import { productAction} from './FeatureProductAction'
 import FeatureProduct from "../../../components/FeatureProduct";
   
   const mapStateToProps = (state) => ({
-    productResponse: state.product.productResponse,
+    productResponse: state.product.featureProducts,
     // storestate.reducername.datavariable
   });
   

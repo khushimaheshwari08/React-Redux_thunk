@@ -3,11 +3,14 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 import About from "./About";
 import Cart from "./Cart";
+import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Contact from "./Contact";
 import { GlobalStyle } from "./GlobalStyle";
 import Home from "./Home";
+import Login from "./Login";
 import Products from "./Products";
+import SingleProductContainer from "./redux/modules/Product/SingleProductContainer";
 import SingleProduct from "./SingleProduct";
 
 const App = () => {
@@ -42,13 +45,15 @@ const App = () => {
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/about" element={<About />} />
           <Route path="/products" element={<Products />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/singleProduct/:id" element={<SingleProduct />} />
+          <Route path="/singleProduct/:id" element={<SingleProductContainer />} />
           <Route path="/cart" element={<Cart />} />
           <Route />
         </Routes>
+        <Footer/>
       </BrowserRouter>
     </ThemeProvider>
   );

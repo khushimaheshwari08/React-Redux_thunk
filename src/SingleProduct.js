@@ -4,35 +4,71 @@ import styled from "styled-components";
 import { Container } from "./styles/Container";
 import { MdSecurity } from "react-icons/md";
 import { TbTruckDelivery, TbReplace } from "react-icons/tb";
+import PageNavigation from "./components/PageNavigation";
+import FormatPrice from "./Helpers/FormatPrice";
+import MyImage from "./components/MyImage";
+import AddToCart from "./components/AddToCart";
 
-const SingleProduct = () => {
-
+const SingleProduct = (props) => {
   const { id } = useParams();
 
-  
+  useEffect(() => {
+    props.singleProductAction(id);
+  }, [id]);
 
- 
- 
+  console.log(props.singleProductResponse);
+
   return (
     <Wrapper>
+      <PageNavigation
+        title={
+          props.singleProductResponse ? props.singleProductResponse.name : ""
+        }
+      />
       <Container className="container">
         <div className="grid grid-two-column">
           <div className="product-images">
-            img
+            <MyImage
+              imgs={
+                props.singleProductResponse
+                  ? props.singleProductResponse.image
+                  : ""
+              }
+            />
           </div>
           <div className="product-data">
-            <h2>name</h2>
+            <h2>
+              {props.singleProductResponse
+                ? props.singleProductResponse.name
+                : ""}
+            </h2>
             <p className="product-data-price">
               MRP:
               <del>
-                formatPrice price= 
+                <FormatPrice
+                  price={
+                    props.singleProductResponse
+                      ? props.singleProductResponse.price + 250000
+                      : ""
+                  }
+                />
               </del>
             </p>
             <p className="product-data-price product-data-real-price">
               Deal of the day:
+              <FormatPrice
+                price={
+                  props.singleProductResponse
+                    ? props.singleProductResponse.price
+                    : ""
+                }
+              />
             </p>
-            <p>description</p>
-
+            <p>
+              {props.singleProductResponse
+                ? props.singleProductResponse.description
+                : ""}
+            </p>
             <div className="product-data-warranty">
               <div className="product-warranty-data">
                 <TbTruckDelivery className="warranty-icon" />
@@ -54,21 +90,37 @@ const SingleProduct = () => {
                 <p>2 year warranty</p>
               </div>
             </div>
-
             <div className="product-data-info">
               <p>
                 Available:
-                <span>0 ? "In Stock" : "Not Available"</span>
+                <span>
+                  {props.singleProductResponse
+                    ? props.singleProductResponse.stock > 0
+                      ? "In Stock"
+                      : "Not available"
+                    : ""}
+                </span>
               </p>
               <p>
                 ID: <span>{id}</span>
               </p>
               <p>
-                Brand:<span>company</span>
+                Brand:
+                <span>
+                  {props.singleProductResponse
+                    ? props.singleProductResponse.company
+                    : ""}
+                </span>
               </p>
             </div>
-            <hr/>
-            stock && 
+            <hr />
+            {props.singleProductResponse ? (
+              props.singleProductResponse.stock > 0 ? (
+                <AddToCart />
+              ) : null
+            ) : (
+              ""
+            )}
           </div>
         </div>
       </Container>

@@ -14,8 +14,8 @@ export const axiosCall = (method, url, type,  headers,data,) => {
 
     instance(apiData)
       .then((response) => {
-        if (response.data.code == 200) {
-          // console.log(response);
+        if (response.status == 200) {
+        //   console.log(response);
           dispatch({
             type: `${type}_SUCCESS`,
             payload: response.data,
