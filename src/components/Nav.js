@@ -1,12 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { FiShoppingCart } from "react-icons/fi";
 import { CgMenu, CgClose } from "react-icons/cg";
-import {Button} from "../styles/Button"
+import { Button } from "../styles/Button";
+import { useSelector } from "react-redux";
 
 const Nav = () => {
   const [menuIcon, setMenuIcon] = useState();
+  // const [login, setLogin] = useState(null);
+  const logInState = useSelector((state) => state.authReducer);
+  console.log(logInState);
 
   const Nav = styled.nav`
     .navbar-lists {
@@ -140,6 +144,18 @@ const Nav = () => {
     }
   `;
 
+  // const auth = localStorage.getItem("loginResponse");
+  // console.log(auth);
+  // useEffect(() => {
+  //   setLogin(auth);
+  // }, [auth]);
+  // console.log(login);
+
+  // const onLogout = () => {
+  //   localStorage.clear();
+  //   setLogin(null);
+  // };
+
   return (
     <Nav>
       <div className={menuIcon ? "navbar active" : "navbar"}>
@@ -180,12 +196,14 @@ const Nav = () => {
               Contact
             </NavLink>
           </li>
-
-          <li >
-          <NavLink
-              to="/login">
-            <Button> Login</Button>
-            </NavLink>
+          <li>
+            {logInState ? (
+              <Button>Logout</Button>
+            ) : (
+              <NavLink to="/login">
+                <Button> Login</Button>
+              </NavLink>
+            )}
           </li>
 
           <li>
