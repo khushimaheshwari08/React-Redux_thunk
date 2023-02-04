@@ -4,13 +4,22 @@ import styled from "styled-components";
 import { FiShoppingCart } from "react-icons/fi";
 import { CgMenu, CgClose } from "react-icons/cg";
 import { Button } from "../styles/Button";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { logoutUserAction } from "../redux/modules/Login/LoginAction";
 
 const Nav = () => {
+  const dispatch = useDispatch();
   const [menuIcon, setMenuIcon] = useState();
   // const [login, setLogin] = useState(null);
-  const logInState = useSelector((state) => state.authReducer);
+  const logInState = useSelector((state) => state.auth.isUserLoggedIn);
   console.log(logInState);
+
+  const auth = localStorage.getItem("isLogin");
+
+  const handleLogout = () => {
+    localStorage.clear();
+    dispatch(logoutUserAction());
+  };
 
   const Nav = styled.nav`
     .navbar-lists {
@@ -197,8 +206,8 @@ const Nav = () => {
             </NavLink>
           </li>
           <li>
-            {logInState ? (
-              <Button>Logout</Button>
+            {logInState || auth ? (
+              <Button onClick={handleLogout}>Logout</Button>
             ) : (
               <NavLink to="/login">
                 <Button> Login</Button>

@@ -12,8 +12,7 @@ const Login = () => {
 
   const handleSubmit = () => {
     if (email === "DEMO@123" || password === "DEMO@123") {
-      localStorage.setItem("Email", email);
-      localStorage.setItem("Password", password);
+      localStorage.setItem("isLogin", true);
       dispatch(loginUserAction());
       navigate("/");
     } else {
