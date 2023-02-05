@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { FaMinus, FaPlus } from "react-icons/fa";
+import { useSelector } from "react-redux";
 
 const CartToggleAmount = (props) => {
   const [amount, setAmount] = useState(1);
+  // const stock = useSelector((state) => state.singleProductReducer)
   //   const setDecrease = () => {
   //     amount > 1 ? setAmount(amount - 1) : setAmount(1);
   //   };
