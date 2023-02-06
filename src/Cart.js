@@ -1,9 +1,38 @@
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { Button } from "./styles/Button";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { useParams, useLocation } from "react-router-dom";
+import CartItem from "./components/CartItem";
+import FormatPrice from "./Helpers/FormatPrice";
+import CartToggleAmount from "./components/CartToggleAmount";
+import { FaTrash } from "react-icons/fa";
+import { FaMinus, FaPlus } from "react-icons/fa";
 
-const Cart = () => {
-  // console.log(cart);
+const Cart = (props,price) => {
+  const location = useLocation();
+  const { id } = location.state;
+  const auth =localStorage.getItem("id");
+  const [amount, setAmount] = useState(1);
+  
+  const setDecrease = () => {
+    amount > 1 ? setAmount(amount - 1) : setAmount(1);
+  };
+
+  const setIncrease = () => {
+    amount  ? setAmount(amount + 1) : setAmount();
+  };
+
+  useEffect(() => {
+    // console.log(id)
+    props.cartAction(id);
+  }, []);
+
+  // console.log(auth)
+
+  // console.log(props.cartResponse);
+
   return (
     <Wrapper>
       <div className="container">
@@ -16,37 +45,75 @@ const Cart = () => {
         </div>
         <hr />
         <div className="cart-item">
-          
+          {/* <CartItem/> */}
+          {/* {props.cartResponse !== "" && props.cartResponse
+            ? props.cartResponse.map((curElem) => {
+                return <CartItem key={curElem.id} {...curElem} />;
+              })
+            : null} */}
+          {/* <p>{props.cartResponse ? props.cartResponse.name : ""}</p> */}
+
+          <div className="cart_heading grid grid-five-column">
+      <div className="cart-image--name">
+        <div>
+          <figure>
+            <img src={props.cartResponse ? props.cartResponse.image[0] : ""} alt="image" />
+          </figure>
+        </div>
+        <div>
+          <p>{props.cartResponse ? props.cartResponse.name : ""}</p>
+        </div>
+      </div>
+      <div className="cart-hide">
+        <p>
+          <FormatPrice price={props.cartResponse ? props.cartResponse.price : ""} />
+        </p>
+      </div>
+      <div className="cart-hide">
+    <div className="cart-button">
+      <div className="amount-toggle">
+        <button onClick={() => setDecrease()}>
+          <FaMinus />
+        </button>
+        <div className="amount-style">{amount}</div>
+        <button onClick={() => setIncrease()}>
+          <FaPlus />
+        </button>
+      </div>
+    </div>
+      </div>
+      <div className="cart-hide">
+        <p>
+          <FormatPrice price={props.cartResponse ? props.cartResponse.price*amount : ""} />
+        </p>
+      </div>
+      <div>
+        <FaTrash className="remove_icon" />
+      </div>
+    </div>
         </div>
         <hr />
+
         <div className="cart-two-button">
-          <NavLink to="/products">
+          <NavLink to="/">
             <Button>Continue Shopping</Button>
           </NavLink>
-          <Button className="btn btn-clear" >
-            Clear Cart
-          </Button>
+          {/* <Button className="btn btn-clear">Clear Cart</Button> */}
         </div>
         <div className="order-total--amount">
           <div className="order-total--subdata">
             <div>
               <p>subtotal:</p>
-              <p>
-                pricetotal_price 
-              </p>
+              <p><FormatPrice price={props.cartResponse ? props.cartResponse.price*amount : ""} /></p>
             </div>
             <div>
               <p>shipping fee:</p>
-              <p>
-                FormatPrice price=
-              </p>
+              <p>₹500.00</p>
             </div>
             <hr />
             <div>
               <p>order total:</p>
-              <p>
-                FormatPrice price
-              </p>
+              <p><FormatPrice price={props.cartResponse ? props.cartResponse.price*amount+50000 : ""}/></p>
             </div>
           </div>
         </div>

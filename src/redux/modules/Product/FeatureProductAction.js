@@ -19,3 +19,14 @@ export const singleProductAction = (id) => {
   };
   return axiosCall("get", path, type, headers);
 };
+
+export const cartAction = (id) => {
+  // console.log(id)
+  const path =   `products/${id}`;
+  const type = "CART_PRODUCT";
+  const headers = {
+    Accept: "application/json",
+    "Content-Type": "application/json",
+  };
+  return axiosCall("get", path, type, headers);
+};

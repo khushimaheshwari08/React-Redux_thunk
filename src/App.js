@@ -10,6 +10,7 @@ import { GlobalStyle } from "./GlobalStyle";
 import Home from "./Home";
 import Login from "./Login";
 import Products from "./Products";
+import CartContainer from "./redux/modules/Product/CartContainer";
 import SingleProductContainer from "./redux/modules/Product/SingleProductContainer";
 import SingleProduct from "./SingleProduct";
 
@@ -50,7 +51,7 @@ const App = () => {
           <Route path="/products" element={<Products />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/singleProduct/:id" element={<SingleProductContainer />} />
-          <Route path="/cart" element={<Cart />} />
+          <Route path="/cart" element={<CartContainer />} />
           <Route />
         </Routes>
         <Footer/>

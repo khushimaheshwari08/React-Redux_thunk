@@ -7,7 +7,7 @@ const FeatureProduct = (props) => {
     props.productAction();
   }, []);
 
-    console.log(props.productResponse)
+    // console.log(props.productResponse)
 
   return (
     <Wrapper className="section">

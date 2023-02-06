@@ -4,21 +4,30 @@ import { useSelector } from "react-redux";
 
 const CartToggleAmount = (props) => {
   const [amount, setAmount] = useState(1);
+
   // const stock = useSelector((state) => state.singleProductReducer)
   //   const setDecrease = () => {
   //     amount > 1 ? setAmount(amount - 1) : setAmount(1);
   //   };
 
+  // const setDecrease = () => {
+  //   if (amount !== 1) {
+  //     setAmount(amount - 1);
+  //   }
+  // };
+
+  // const setIncrease = () => {
+  //   if (amount < props.singleProductResponse.stock) {
+  //     setAmount(props.singleProductResponse.stock);
+  //   }
+  // };
+
   const setDecrease = () => {
-    if (amount !== 1) {
-      setAmount(amount - 1);
-    }
+    amount > 1 ? setAmount(amount - 1) : setAmount(1);
   };
 
   const setIncrease = () => {
-    if (amount < props.singleProductResponse.stock) {
-      setAmount(props.singleProductResponse.stock);
-    }
+    amount  ? setAmount(amount + 1) : setAmount();
   };
 
   return (

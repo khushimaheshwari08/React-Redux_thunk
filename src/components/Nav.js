@@ -12,7 +12,7 @@ const Nav = () => {
   const [menuIcon, setMenuIcon] = useState();
   // const [login, setLogin] = useState(null);
   const logInState = useSelector((state) => state.auth.isUserLoggedIn);
-  console.log(logInState);
+  // console.log(logInState);
 
   const auth = localStorage.getItem("isLogin");
 

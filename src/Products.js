@@ -4,7 +4,7 @@ const Products = () => {
 
   return (
     <Wrapper>
-      <div className="container grid grid-filter-column">
+      {/* <div className="container grid grid-filter-column">
         <div>
           FilterSection 
         </div>
@@ -16,7 +16,7 @@ const Products = () => {
             ProductList 
           </div>
         </section>
-      </div>
+      </div> */}
     </Wrapper>
   );
 };
