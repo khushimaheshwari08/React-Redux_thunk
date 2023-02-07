@@ -1,37 +1,44 @@
-import React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { Button } from "./styles/Button";
 import { useEffect, useState } from "react";
-
+import { useDispatch, useSelector } from "react-redux";
+import { useParams, useLocation } from "react-router-dom";
+import CartItem from "./components/CartItem";
 import FormatPrice from "./Helpers/FormatPrice";
-
+import CartToggleAmount from "./components/CartToggleAmount";
 import { FaTrash } from "react-icons/fa";
 import { FaMinus, FaPlus } from "react-icons/fa";
-import CartItem from "./components/CartItem";
-import { useDispatch, useSelector } from "react-redux";
-import { addToCartAction } from "./redux/modules/Product/FeatureProductAction";
+import { selectedCartItemAction } from "./redux/modules/Product/FeatureProductAction";
 
-const Cart = () => {
+const Cart1 = (props,price) => {
+  const location = useLocation();
+  const navigate = useNavigate()
+  // const { id } = location.state;
+  // const auth =localStorage.getItem(id);
+  // console.log(auth)
   const [amount, setAmount] = useState(1);
-  const navigate = useNavigate();
-  const selectedItem = useSelector((state) => state.cart.cartItems);
- 
-//   useEffect(() => {
-//     addToCartAction();
-//   }, []);
-
-  useEffect(() => {
-    console.log("CartItems", selectedItem);
-  }, [selectedItem]);
- 
+  const selectedItem = useSelector(state => state.cart.selectedCartItems);
+  // console.log(selectedItem)
+  
   const setDecrease = () => {
     amount > 1 ? setAmount(amount - 1) : setAmount(1);
   };
 
   const setIncrease = () => {
-    amount ? setAmount(amount + 1) : setAmount();
+    amount  ? setAmount(amount + 1) : setAmount();
   };
+
+  
+
+  useEffect(() => {
+    // console.log(id)
+    props.cartAction();
+  }, []);
+
+  // console.log(auth)
+
+  // console.log(props.singleProductResponse.id);
 
   return (
     <Wrapper>
@@ -45,50 +52,58 @@ const Cart = () => {
         </div>
         <hr />
         <div className="cart-item">
-          <div className="cart_heading grid grid-five-column">
-            <div className="cart-image--name">
-              <div></div>
-              <div>
-                <p>name</p>
-              </div>
-            </div>
-            <div className="cart-hide">
-              <p>price</p>
-            </div>
-            <div className="cart-hide">
-              <div className="cart-button">
-                <div className="amount-toggle">
-                  <button onClick={() => setDecrease()}>
-                    <FaMinus />
-                  </button>
-                  <div className="amount-style">{amount}</div>
-                  <button onClick={() => setIncrease()}>
-                    <FaPlus />
-                  </button>
-                </div>
-              </div>
-            </div>
-            <div className="cart-hide">
-              <p>
-                <FormatPrice />
-              </p>
-            </div>
-            <div>
-              <FaTrash className="remove_icon" />
-            </div>
-          </div>
-        </div>
+          {/* <CartItem/> */}
+          {/* {props.cartResponse !== "" && props.cartResponse
+            ? props.cartResponse.map((curElem) => {
+                return <CartItem key={curElem.id} {...curElem} />;
+              })
+            : null} */}
+          {/* <p>{props.cartResponse ? props.cartResponse.name : ""}</p> */}
 
-        {/* <div className="cart-item">
-          {cart.map((curElem) => {
-            return <CartItem key={curElem.id} {...curElem} />;
-          })}
-        </div> */}
+          <div className="cart_heading grid grid-five-column">
+      <div className="cart-image--name">
+        <div>
+          {/* <figure>
+            <img src={props.cartResponse ? props.cartResponse.image[0] : ""} alt="image" />
+          </figure> */}
+        </div>
+        <div>
+          <p>{props.cartResponse ? props.cartResponse.name : ""}</p>
+        </div>
+      </div>
+      <div className="cart-hide">
+        <p>
+          <FormatPrice price={props.cartResponse ? props.cartResponse.price : ""} />
+        </p>
+      </div>
+      <div className="cart-hide">
+    <div className="cart-button">
+      <div className="amount-toggle">
+        <button onClick={() => setDecrease()}>
+          <FaMinus />
+        </button>
+        <div className="amount-style">{amount}</div>
+        <button onClick={() => setIncrease()}>
+          <FaPlus />
+        </button>
+      </div>
+    </div>
+      </div>
+      <div className="cart-hide">
+        <p>
+          <FormatPrice price={props.cartResponse ? props.cartResponse.price*amount : ""} />
+        </p>
+      </div>
+      <div>
+        <FaTrash className="remove_icon" />
+      </div>
+    </div>
+        </div>
         <hr />
 
         <div className="cart-two-button">
           <NavLink to="/">
-            <Button onClick={() => navigate("/")}>Continue Shopping</Button>
+            <Button onClick={() => navigate('/')}>Continue Shopping</Button>
           </NavLink>
           {/* <Button className="btn btn-clear">Clear Cart</Button> */}
         </div>
@@ -96,7 +111,7 @@ const Cart = () => {
           <div className="order-total--subdata">
             <div>
               <p>subtotal:</p>
-              <p>FormatPrice </p>
+              <p><FormatPrice price={props.cartResponse ? props.cartResponse.price*amount : ""} /></p>
             </div>
             <div>
               <p>shipping fee:</p>
@@ -105,7 +120,7 @@ const Cart = () => {
             <hr />
             <div>
               <p>order total:</p>
-              <p>ormatPrice price</p>
+              <p><FormatPrice price={props.cartResponse ? props.cartResponse.price*amount+50000 : ""}/></p>
             </div>
           </div>
         </div>
@@ -113,6 +128,18 @@ const Cart = () => {
     </Wrapper>
   );
 };
+
+const EmptyDiv = styled.div`
+  display: grid;
+  place-items: center;
+  height: 50vh;
+  h3 {
+    font-size: 4.2rem;
+    text-transform: capitalize;
+    font-weight: 300;
+  }
+`;
+
 const Wrapper = styled.section`
   padding: 9rem 0;
 
@@ -288,4 +315,6 @@ const Wrapper = styled.section`
   }
 `;
 
-export default Cart;
+export default Cart1;
+
+// action send data through react in the store,reducer getting data from and put into store

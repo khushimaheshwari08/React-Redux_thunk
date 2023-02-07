@@ -11,19 +11,27 @@ import AddToCart from "./components/AddToCart";
 import CartToggleAmount from "./components/CartToggleAmount";
 import { Button } from "./styles/Button";
 import { NavLink } from "react-router-dom";
-
+import { useDispatch, useSelector } from "react-redux";
+import { selectedCartItemAction ,addToCartAction} from "./redux/modules/Product/FeatureProductAction";
 
 const SingleProduct = (props) => {
   const { id } = useParams();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     props.singleProductAction(id);
   }, [id]);
 
-  const onstoreId = ()=>{
-    localStorage.setItem("id", id);
-  }
+  // const onstoreId = () => {
+  //   // localStorage.setItem("id", id);
+  //   const selectedProduct = dispatch(selectedCartItemAction(props.singleProductResponse));
+  //   console.log("Selected Product", selectedProduct);
+  // };
 
+  const onCart = () => {
+    const selectedProduct = dispatch(addToCartAction(props.singleProductResponse));
+    console.log("Selected Product", selectedProduct);
+  }
 
   // console.log(props.singleProductResponse);
 
@@ -132,8 +140,10 @@ const SingleProduct = (props) => {
             )}  */}
             <div>
               <CartToggleAmount />
-              <NavLink to="/cart" state={{ id : id}}>
-                <Button className="btn" onClick={onstoreId}>Add To Cart</Button>
+              <NavLink to="/cart">
+                <Button className="btn" onClick={onCart}>
+                  Add To Cart
+                </Button>
               </NavLink>
             </div>
           </div>
