@@ -50,11 +50,14 @@ const App = () => {
           <Route path="/about" element={<About />} />
           <Route path="/products" element={<Products />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/singleProduct/:id" element={<SingleProductContainer />} />
-          <Route path="/cart" element={<CartContainer />} />
+          <Route
+            path="/singleProduct/:id"
+            element={<SingleProductContainer />}
+          />
+          <Route path="/cart" element={<Cart />} />
           <Route />
         </Routes>
-        <Footer/>
+        <Footer />
       </BrowserRouter>
     </ThemeProvider>
   );

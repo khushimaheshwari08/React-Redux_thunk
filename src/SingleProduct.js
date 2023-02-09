@@ -8,13 +8,10 @@ import PageNavigation from "./components/PageNavigation";
 import FormatPrice from "./Helpers/FormatPrice";
 import MyImage from "./components/MyImage";
 import AddToCart from "./components/AddToCart";
-import CartToggleAmount from "./components/CartToggleAmount";
 import { Button } from "./styles/Button";
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  addToCartAction,
-} from "./redux/modules/Product/FeatureProductAction";
+import { addToCartAction } from "./redux/modules/Product/FeatureProductAction";
 
 const SingleProduct = (props) => {
   const { id } = useParams();
@@ -31,7 +28,9 @@ const SingleProduct = (props) => {
   // };
 
   const onCart = () => {
-    const selectedProduct = dispatch(addToCartAction(props.singleProductResponse));
+    const selectedProduct = dispatch(
+      addToCartAction(props.singleProductResponse)
+    );
     console.log("Selected Product", selectedProduct);
   };
 
@@ -143,14 +142,15 @@ const SingleProduct = (props) => {
             ) : (
               ""
             )}  */}
-            <div>
+            {/* <div>
               <CartToggleAmount />
               <NavLink to="/cart">
                 <Button className="btn" onClick={onCart}>
                   Add To Cart
                 </Button>
               </NavLink>
-            </div>
+            </div> */}
+            {props.singleProductResponse && props.singleProductResponse.stock > 0 ? <AddToCart /> : ""}
           </div>
         </div>
       </Container>

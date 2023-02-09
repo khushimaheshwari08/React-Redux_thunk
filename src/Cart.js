@@ -15,15 +15,16 @@ const Cart = () => {
   const [amount, setAmount] = useState(1);
   const navigate = useNavigate();
 
-  const selectedItem = useSelector((state) => state.cart.cartItems);
-  console.log(selectedItem)
+ 
+  // const selectedItem = useSelector((state)=> state.cart.cartItems)
+  // console.log(selectedItem)
 
   // useEffect(() => {
   //   props.addToCartAction(selectedItem);
   // }, []);
 
   // console.log(props.cartResponse,"CartResponse")
- 
+
   // useEffect(() => {
   //   addToCartAction();
   //   localStorage.setItem("Cartvalue", JSON.stringify(selectedItem));
@@ -32,7 +33,7 @@ const Cart = () => {
   // useEffect(() => {
   //   console.log("CartItems", selectedItem);
   // }, [selectedItem]);
- 
+
   const setDecrease = () => {
     amount > 1 ? setAmount(amount - 1) : setAmount(1);
   };
