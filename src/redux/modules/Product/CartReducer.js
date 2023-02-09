@@ -34,12 +34,20 @@
 //   }
 // };
 
+// const getLocaLCartData = () => {
+//   let localCartData = localStorage.getItem("Cartvalue");
+//   const parsedData = JSON.parse(localCartData);
+//   if (!Array.isArray(parsedData)) return [];
+
+//   return parsedData;
+// };
+
 const initialState = {
-  cartItems:[]
+  cartItems: [],
 };
 
 export default (state = initialState, { type, payload }) => {
-  console.log("reducer",payload);
+  console.log("reducer", payload);
   switch (type) {
     case "CART_PRODUCTS_SUCCESS":
       return {
@@ -50,4 +58,4 @@ export default (state = initialState, { type, payload }) => {
     default:
       return state;
   }
-}
+};

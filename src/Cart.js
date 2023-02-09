@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import { Button } from "./styles/Button";
 import { useEffect, useState } from "react";
@@ -10,20 +10,28 @@ import { FaTrash } from "react-icons/fa";
 import { FaMinus, FaPlus } from "react-icons/fa";
 import CartItem from "./components/CartItem";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCartAction } from "./redux/modules/Product/FeatureProductAction";
 
 const Cart = () => {
   const [amount, setAmount] = useState(1);
   const navigate = useNavigate();
-  const selectedItem = useSelector((state) => state.cart.cartItems);
- 
-//   useEffect(() => {
-//     addToCartAction();
-//   }, []);
 
-  useEffect(() => {
-    console.log("CartItems", selectedItem);
-  }, [selectedItem]);
+  const selectedItem = useSelector((state) => state.cart.cartItems);
+  console.log(selectedItem)
+
+  // useEffect(() => {
+  //   props.addToCartAction(selectedItem);
+  // }, []);
+
+  // console.log(props.cartResponse,"CartResponse")
+ 
+  // useEffect(() => {
+  //   addToCartAction();
+  //   localStorage.setItem("Cartvalue", JSON.stringify(selectedItem));
+  // }, []);
+
+  // useEffect(() => {
+  //   console.log("CartItems", selectedItem);
+  // }, [selectedItem]);
  
   const setDecrease = () => {
     amount > 1 ? setAmount(amount - 1) : setAmount(1);

@@ -12,7 +12,9 @@ import CartToggleAmount from "./components/CartToggleAmount";
 import { Button } from "./styles/Button";
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { selectedCartItemAction ,addToCartAction} from "./redux/modules/Product/FeatureProductAction";
+import {
+  addToCartAction,
+} from "./redux/modules/Product/FeatureProductAction";
 
 const SingleProduct = (props) => {
   const { id } = useParams();
@@ -31,7 +33,10 @@ const SingleProduct = (props) => {
   const onCart = () => {
     const selectedProduct = dispatch(addToCartAction(props.singleProductResponse));
     console.log("Selected Product", selectedProduct);
-  }
+  };
+
+  // const selectedItem = useSelector((state) => state);
+  // console.log("Selected item for storing ",selectedItem)
 
   // console.log(props.singleProductResponse);
 

@@ -317,4 +317,4 @@ const Wrapper = styled.section`
 
 export default Cart1;
 
-// action send data through react in the store,reducer getting data from and put into store
+// action send data through react components to the redux store,reducer getting data from and put into store

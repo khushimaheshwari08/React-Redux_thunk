@@ -20,23 +20,24 @@ export const singleProductAction = (id) => {
   return axiosCall("get", path, type, headers);
 };
 
-export const cartAction = () => {
-  // console.log(id)
-  const path =   "products";
-  const type = "CART_PRODUCT";
-  const headers = {
-    Accept: "application/json",
-    "Content-Type": "application/json",
-  };
-  return axiosCall("get", path, type, headers);
-};
 
-export const selectedCartItemAction = (selectedCartItem) => {
-  return {
-    type : "SELECTED_CART_ITEM_ACTION",
-    payload: selectedCartItem
-  }
-};
+// export const cartAction = () => {
+//   // console.log(id)
+//   const path =   "products";
+//   const type = "CART_PRODUCT";
+//   const headers = {
+//     Accept: "application/json",
+//     "Content-Type": "application/json",
+//   };
+//   return axiosCall("get", path, type, headers);
+// };
+
+// export const selectedCartItemAction = (selectedCartItem) => {
+//   return {
+//     type : "SELECTED_CART_ITEM_ACTION",
+//     payload: selectedCartItem
+//   }
+// };
 
 // 
 
