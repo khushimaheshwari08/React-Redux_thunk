@@ -15,6 +15,9 @@ const Cart = () => {
   const [amount, setAmount] = useState(1);
   const navigate = useNavigate();
 
+    const cartProduct = useSelector((state) => state.cart.cartItems );
+      // console.log(cartProduct)
+
  
   // const selectedItem = useSelector((state)=> state.cart.cartItems)
   // console.log(selectedItem)
@@ -34,13 +37,13 @@ const Cart = () => {
   //   console.log("CartItems", selectedItem);
   // }, [selectedItem]);
 
-  const setDecrease = () => {
-    amount > 1 ? setAmount(amount - 1) : setAmount(1);
-  };
+  // const setDecrease = () => {
+  //   amount > 1 ? setAmount(amount - 1) : setAmount(1);
+  // };
 
-  const setIncrease = () => {
-    amount ? setAmount(amount + 1) : setAmount();
-  };
+  // const setIncrease = () => {
+  //   amount ? setAmount(amount + 1) : setAmount();
+  // };
 
   return (
     <Wrapper>
@@ -54,45 +57,10 @@ const Cart = () => {
         </div>
         <hr />
         <div className="cart-item">
-          <div className="cart_heading grid grid-five-column">
-            <div className="cart-image--name">
-              <div></div>
-              <div>
-                <p>name</p>
-              </div>
-            </div>
-            <div className="cart-hide">
-              <p>price</p>
-            </div>
-            <div className="cart-hide">
-              <div className="cart-button">
-                <div className="amount-toggle">
-                  <button onClick={() => setDecrease()}>
-                    <FaMinus />
-                  </button>
-                  <div className="amount-style">{amount}</div>
-                  <button onClick={() => setIncrease()}>
-                    <FaPlus />
-                  </button>
-                </div>
-              </div>
-            </div>
-            <div className="cart-hide">
-              <p>
-                <FormatPrice />
-              </p>
-            </div>
-            <div>
-              <FaTrash className="remove_icon" />
-            </div>
-          </div>
-        </div>
-
-        {/* <div className="cart-item">
-          {cart.map((curElem) => {
+          {cartProduct.map((curElem) => {
             return <CartItem key={curElem.id} {...curElem} />;
           })}
-        </div> */}
+        </div>
         <hr />
 
         <div className="cart-two-button">
@@ -114,7 +82,7 @@ const Cart = () => {
             <hr />
             <div>
               <p>order total:</p>
-              <p>ormatPrice price</p>
+              <p>FormatPrice price</p>
             </div>
           </div>
         </div>

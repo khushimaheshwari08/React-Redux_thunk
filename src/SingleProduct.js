@@ -8,10 +8,7 @@ import PageNavigation from "./components/PageNavigation";
 import FormatPrice from "./Helpers/FormatPrice";
 import MyImage from "./components/MyImage";
 import AddToCart from "./components/AddToCart";
-import { Button } from "./styles/Button";
-import { NavLink } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { addToCartAction } from "./redux/modules/Product/FeatureProductAction";
+import { useDispatch } from "react-redux";
 
 const SingleProduct = (props) => {
   const { id } = useParams();
@@ -20,24 +17,6 @@ const SingleProduct = (props) => {
   useEffect(() => {
     props.singleProductAction(id);
   }, [id]);
-
-  // const onstoreId = () => {
-  //   // localStorage.setItem("id", id);
-  //   const selectedProduct = dispatch(selectedCartItemAction(props.singleProductResponse));
-  //   console.log("Selected Product", selectedProduct);
-  // };
-
-  const onCart = () => {
-    const selectedProduct = dispatch(
-      addToCartAction(props.singleProductResponse)
-    );
-    console.log("Selected Product", selectedProduct);
-  };
-
-  // const selectedItem = useSelector((state) => state);
-  // console.log("Selected item for storing ",selectedItem)
-
-  // console.log(props.singleProductResponse);
 
   return (
     <Wrapper>

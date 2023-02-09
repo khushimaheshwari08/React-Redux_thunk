@@ -1,26 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
 import FormatPrice from "../Helpers/FormatPrice";
 import { FaTrash } from "react-icons/fa";
 import CartToggleAmount from "./CartToggleAmount";
+import { useDispatch, useSelector } from "react-redux";
 
-const CartItem = (price) => {
-  //   const setDecrease = () => {
-  //     amount > 1 ? setAmount(amount - 1) : setAmount(1);
-  //   };
+const CartItem = ({ id, name, price,qty }) => {
+  const [amount, setAmount] = useState(1);
+  const productDetail = useSelector(
+    (state) => state.singleProduct.singleProducts
+  );
+  //   console.log(productDetail)
 
-  //   const setIncrease = () => {
-  //     amount < stock ? setAmount(amount + 1) : setAmount(stock);
-  //   };
+  const setDecrease = () => {
+    if (amount !== 1) {
+      setAmount(amount - 1);
+    }
+  };
+
+  const setIncrease = () => {
+    if (amount < productDetail.stock) {
+      setAmount(amount + 1);
+    }
+  };
   return (
     <div className="cart_heading grid grid-five-column">
       <div className="cart-image--name">
+        <div></div>
         <div>
-          {/* <figure>
-            <img src='image' alt='id' />
-          </figure> */}
-        </div>
-        <div>
-          <p>name</p>
+          <p>{name}</p>
+          <div className="color-div"></div>
         </div>
       </div>
       <div className="cart-hide">
@@ -29,10 +37,13 @@ const CartItem = (price) => {
         </p>
       </div>
       <CartToggleAmount
+        amount={qty}
+        setDecrease={setDecrease}
+        setIncrease={setIncrease}
       />
       <div className="cart-hide">
         <p>
-          {/* <FormatPrice price={price * amount} /> */}
+          <FormatPrice price={price*qty} />
         </p>
       </div>
       <div>

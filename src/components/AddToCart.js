@@ -10,11 +10,11 @@ const AddToCart = () => {
   const [amount, setAmount] = useState(1);
   const dispatch = useDispatch();
 
-  const productStock = useSelector((state) => state.singleProduct.singleProducts.stock );
-//   console.log(productStock)
+  const productDetail = useSelector(
+    (state) => state.singleProduct.singleProducts
+  );
+  //   console.log(productDetail)
 
-  const productDetail = useSelector((state)=> state.cart.cartItems)
-  console.log(productDetail)
 
   const setDecrease = () => {
     if (amount !== 1) {
@@ -23,7 +23,7 @@ const AddToCart = () => {
   };
 
   const setIncrease = () => {
-    if (amount < productStock) {
+    if (amount < productDetail.stock) {
       setAmount(amount + 1);
     }
   };
@@ -37,7 +37,12 @@ const AddToCart = () => {
           setIncrease={setIncrease}
         />
         <NavLink to="/cart">
-          <Button className="btn" onClick={()=>dispatch(addToCartAction(productDetail))}>Add To Cart</Button>
+        <Button
+          className="btn"
+          onClick={() => dispatch(addToCartAction(productDetail, amount))}
+        >
+          Add To Cart
+        </Button>
         </NavLink>
       </div>
     </Wrapper>

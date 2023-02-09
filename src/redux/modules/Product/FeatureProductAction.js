@@ -20,7 +20,6 @@ export const singleProductAction = (id) => {
   return axiosCall("get", path, type, headers);
 };
 
-
 // export const cartAction = () => {
 //   // console.log(id)
 //   const path =   "products";
@@ -39,12 +38,19 @@ export const singleProductAction = (id) => {
 //   }
 // };
 
-// 
+//
 
-export const addToCartAction = (cartItem) => {
-  console.log("action",cartItem)
+export const addToCartAction = (cartItem, amount) => {
+  // console.log("action",cartItem)
   return {
-    type : "CART_PRODUCTS",
-    payload: cartItem
-  }
-}
+    type: "ADD_TO_CART",
+    payload: { cartItem: cartItem, qty: amount },
+  };
+};
+
+// export const incrementCartProduct = (id) => {
+//   return {
+//     type: "INCREASE_CART_PRODUCT",
+//     payload: id
+//   };
+// };
