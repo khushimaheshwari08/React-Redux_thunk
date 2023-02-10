@@ -48,9 +48,9 @@ export const addToCartAction = (cartItem, amount) => {
   };
 };
 
-// export const incrementCartProduct = (id) => {
-//   return {
-//     type: "INCREASE_CART_PRODUCT",
-//     payload: id
-//   };
-// };
+export const increaseCartProduct = (id) => {
+  return {
+    type: "INCREASE_CART_PRODUCT",
+    payload: id
+  };
+};
