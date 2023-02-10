@@ -12,7 +12,6 @@ import { useDispatch } from "react-redux";
 
 const SingleProduct = (props) => {
   const { id } = useParams();
-  const dispatch = useDispatch();
 
   useEffect(() => {
     props.singleProductAction(id);
@@ -129,7 +128,12 @@ const SingleProduct = (props) => {
                 </Button>
               </NavLink>
             </div> */}
-            {props.singleProductResponse && props.singleProductResponse.stock > 0 ? <AddToCart /> : ""}
+            {props.singleProductResponse &&
+            props.singleProductResponse.stock > 0 ? (
+              <AddToCart />
+            ) : (
+              ""
+            )}
           </div>
         </div>
       </Container>

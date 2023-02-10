@@ -20,26 +20,6 @@ export const singleProductAction = (id) => {
   return axiosCall("get", path, type, headers);
 };
 
-// export const cartAction = () => {
-//   // console.log(id)
-//   const path =   "products";
-//   const type = "CART_PRODUCT";
-//   const headers = {
-//     Accept: "application/json",
-//     "Content-Type": "application/json",
-//   };
-//   return axiosCall("get", path, type, headers);
-// };
-
-// export const selectedCartItemAction = (selectedCartItem) => {
-//   return {
-//     type : "SELECTED_CART_ITEM_ACTION",
-//     payload: selectedCartItem
-//   }
-// };
-
-//
-
 export const addToCartAction = (cartItem, amount) => {
   // console.log("action",cartItem)
   return {
@@ -51,6 +31,20 @@ export const addToCartAction = (cartItem, amount) => {
 export const increaseCartProduct = (id) => {
   return {
     type: "INCREASE_CART_PRODUCT",
+    payload: id
+  };
+};
+
+export const decreaseCartProduct = (id) => {
+  return {
+    type: "DECREASE_CART_PRODUCT",
+    payload: id
+  };
+};
+
+export const removeCartProduct = (id) => {
+  return {
+    type: "REMOVE_CART_PRODUCT",
     payload: id
   };
 };

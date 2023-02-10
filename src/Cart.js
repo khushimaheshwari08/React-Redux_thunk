@@ -3,22 +3,17 @@ import { NavLink, useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import { Button } from "./styles/Button";
 import { useEffect, useState } from "react";
-
-import FormatPrice from "./Helpers/FormatPrice";
-
-import { FaTrash } from "react-icons/fa";
-import { FaMinus, FaPlus } from "react-icons/fa";
 import CartItem from "./components/CartItem";
 import { useDispatch, useSelector } from "react-redux";
+import FormatPrice from "./Helpers/FormatPrice";
 
 const Cart = () => {
-  const [amount, setAmount] = useState(1);
+  const [amount, setAmount] = useState(0);
   const navigate = useNavigate();
 
-    const cartProduct = useSelector((state) => state.cart.cartItems );
-      // console.log(cartProduct)
+  const cartProduct = useSelector((state) => state.cart.cartItems);
+  // console.log(cartProduct);
 
- 
   // const selectedItem = useSelector((state)=> state.cart.cartItems)
   // console.log(selectedItem)
 
@@ -45,6 +40,21 @@ const Cart = () => {
   //   amount ? setAmount(amount + 1) : setAmount();
   // };
 
+  // let { price,qty} = cartProduct
+
+  // const initialVal =  price * qty;
+  // console.log(initialVal)
+  // useEffect(() => {
+  // }, [])
+
+  if (cartProduct.length === 0) {
+    return (
+      <EmptyDiv>
+        <h3>No Cart in Item </h3>
+      </EmptyDiv>
+    );
+  }
+
   return (
     <Wrapper>
       <div className="container">
@@ -58,7 +68,7 @@ const Cart = () => {
         <hr />
         <div className="cart-item">
           {cartProduct.map((curElem) => {
-            return <CartItem key={curElem.id} {...curElem} />;
+            return <CartItem key={curElem.id} data={curElem} />;
           })}
         </div>
         <hr />
@@ -73,7 +83,23 @@ const Cart = () => {
           <div className="order-total--subdata">
             <div>
               <p>subtotal:</p>
-              <p>FormatPrice </p>
+              {/* <p>
+                {cartProduct.map((curElem) => {
+                  return <FormatPrice price={curElem.initialVal} />;
+                })}
+              </p> */}
+
+              <p>
+                {cartProduct.map((curElem) => {
+                const price = curElem.price
+                let value =  price+amount
+                console.log(value)
+                  // return (
+                  // <FormatPrice price= {setAmount(value)}/>
+                  // );
+                })}
+              </p>
+
             </div>
             <div>
               <p>shipping fee:</p>
@@ -90,6 +116,18 @@ const Cart = () => {
     </Wrapper>
   );
 };
+
+const EmptyDiv = styled.div`
+  display: grid;
+  place-items: center;
+  height: 50vh;
+  h3 {
+    font-size: 4.2rem;
+    text-transform: capitalize;
+    font-weight: 300;
+  }
+`;
+
 const Wrapper = styled.section`
   padding: 9rem 0;
 

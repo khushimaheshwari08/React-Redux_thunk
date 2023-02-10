@@ -25,11 +25,29 @@ export default (state = initialState, { type, payload }) => {
       return {
         ...state,
         cartItems: state.cartItems.map((product) =>
-          product.id === payload.action
+          product.id === payload
             ? { ...product, qty: product.qty + 1 }
             : product
         ),
       };
+
+      case "DECREASE_CART_PRODUCT":
+        return {
+          ...state,
+          cartItems: state.cartItems.map((product) =>
+            product.id === payload
+              ? { ...product, qty: product.qty - 1 }
+              : product
+          ),
+        };
+
+        case "REMOVE_CART_PRODUCT":
+          return {
+            ...state,
+            cartItems: state.cartItems.filter((product) =>
+            product.id !== payload
+          ),
+          }
 
     default:
       return state;
