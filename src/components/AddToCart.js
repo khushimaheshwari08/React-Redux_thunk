@@ -15,7 +15,6 @@ const AddToCart = () => {
   );
   //   console.log(productDetail)
 
-
   const setDecrease = () => {
     if (amount !== 1) {
       setAmount(amount - 1);
@@ -37,12 +36,12 @@ const AddToCart = () => {
           setIncrease={setIncrease}
         />
         <NavLink to="/cart">
-        <Button
-          className="btn"
-          onClick={() => dispatch(addToCartAction(productDetail, amount))}
-        >
-          Add To Cart
-        </Button>
+          <Button
+            className="btn"
+            onClick={() => dispatch(addToCartAction(productDetail, amount))}
+          >
+            Add To Cart
+          </Button>
         </NavLink>
       </div>
     </Wrapper>

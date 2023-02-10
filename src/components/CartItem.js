@@ -12,9 +12,9 @@ import {
 const CartItem = ({ data }) => {
   const dispatch = useDispatch();
 
-  const productStock = useSelector(
-    (state) => state.singleProduct.singleProducts.stock
-  );
+  // const productStock = useSelector(
+  //   (state) => state.singleProduct.singleProducts.stock
+  // );
   // console.log(productStock)
 
   const setDecrease = () => {
@@ -24,7 +24,7 @@ const CartItem = ({ data }) => {
   };
 
   const setIncrease = () => {
-    if (data.qty < productStock) {
+    if (data.qty < data.stock) {
       dispatch(increaseCartProduct(data.id));
     }
   };
@@ -60,7 +60,6 @@ const CartItem = ({ data }) => {
       <div>
         <FaTrash className="remove_icon" onClick={() => removeItem()} />
       </div>
-      
     </div>
   );
 };

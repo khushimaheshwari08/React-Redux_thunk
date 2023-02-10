@@ -31,20 +31,20 @@ export const addToCartAction = (cartItem, amount) => {
 export const increaseCartProduct = (id) => {
   return {
     type: "INCREASE_CART_PRODUCT",
-    payload: id
+    payload: id,
   };
 };
 
 export const decreaseCartProduct = (id) => {
   return {
     type: "DECREASE_CART_PRODUCT",
-    payload: id
+    payload: id,
   };
 };
 
 export const removeCartProduct = (id) => {
   return {
     type: "REMOVE_CART_PRODUCT",
-    payload: id
+    payload: id,
   };
 };

@@ -8,7 +8,8 @@ import { useDispatch, useSelector } from "react-redux";
 import FormatPrice from "./Helpers/FormatPrice";
 
 const Cart = () => {
-  const [amount, setAmount] = useState(0);
+  const [subTotal, setSubTotal] = useState(0);
+  const [shippingFee, setShippingFee] = useState(50000);
   const navigate = useNavigate();
 
   const cartProduct = useSelector((state) => state.cart.cartItems);
@@ -40,12 +41,15 @@ const Cart = () => {
   //   amount ? setAmount(amount + 1) : setAmount();
   // };
 
-  // let { price,qty} = cartProduct
-
-  // const initialVal =  price * qty;
-  // console.log(initialVal)
-  // useEffect(() => {
-  // }, [])
+  useEffect(() => {
+    let sum = 0;
+    if (cartProduct.length !== 0) {
+      cartProduct.forEach((element) => {
+        sum = sum + element.price * element.qty;
+      });
+    }
+    setSubTotal(sum);
+  }, [cartProduct]);
 
   if (cartProduct.length === 0) {
     return (
@@ -83,32 +87,22 @@ const Cart = () => {
           <div className="order-total--subdata">
             <div>
               <p>subtotal:</p>
-              {/* <p>
-                {cartProduct.map((curElem) => {
-                  return <FormatPrice price={curElem.initialVal} />;
-                })}
-              </p> */}
-
               <p>
-                {cartProduct.map((curElem) => {
-                const price = curElem.price
-                let value =  price+amount
-                console.log(value)
-                  // return (
-                  // <FormatPrice price= {setAmount(value)}/>
-                  // );
-                })}
+                <FormatPrice price={subTotal} />
               </p>
-
             </div>
             <div>
               <p>shipping fee:</p>
-              <p>₹500.00</p>
+              <p>
+                <FormatPrice price={shippingFee} />
+              </p>
             </div>
             <hr />
             <div>
               <p>order total:</p>
-              <p>FormatPrice price</p>
+              <p>
+                <FormatPrice price={subTotal + shippingFee} />
+              </p>
             </div>
           </div>
         </div>

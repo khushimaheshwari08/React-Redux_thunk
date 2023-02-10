@@ -3,11 +3,10 @@ import styled from "styled-components";
 import FormatPrice from "../Helpers/FormatPrice";
 import { Button } from "../styles/Button";
 const FilterSection = () => {
-
   return (
     <Wrapper>
       <div className="filter-search">
-        <form >
+        <form>
           <input
             type="text"
             name="text"
@@ -62,16 +61,14 @@ const FilterSection = () => {
         <input
           type="range"
           name="price"
-        //   min={minPrice}
-        //   max={maxPrice}
-        //   value={price}
-        //   onChange={updateFilterValue}
+          //   min={minPrice}
+          //   max={maxPrice}
+          //   value={price}
+          //   onChange={updateFilterValue}
         />
       </div>
       <div className="clear-filter">
-        <Button className="btn" >
-          Clear Filters
-        </Button>
+        <Button className="btn">Clear Filters</Button>
       </div>
     </Wrapper>
   );

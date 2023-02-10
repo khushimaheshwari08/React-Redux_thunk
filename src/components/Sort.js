@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { BsFillGridFill, BsList } from "react-icons/bs";
 
 const Sort = () => {
-
   return (
     <Wrapper className="sort-section">
       <div className="sorting-list--grid">
