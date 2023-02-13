@@ -10,7 +10,6 @@ import { GlobalStyle } from "./GlobalStyle";
 import Home from "./Home";
 import Login from "./Login";
 import Products from "./Products";
-import CartContainer from "./redux/modules/Product/CartContainer";
 import SingleProductContainer from "./redux/modules/Product/SingleProductContainer";
 import SingleProduct from "./SingleProduct";
 

@@ -10,7 +10,6 @@ import { logoutUserAction } from "../redux/modules/Login/LoginAction";
 const Nav = () => {
   const dispatch = useDispatch();
   const [menuIcon, setMenuIcon] = useState();
-  // const [login, setLogin] = useState(null);
   const logInState = useSelector((state) => state.auth.isUserLoggedIn);
   // console.log(logInState);
 
@@ -153,18 +152,6 @@ const Nav = () => {
     }
   `;
 
-  // const auth = localStorage.getItem("loginResponse");
-  // console.log(auth);
-  // useEffect(() => {
-  //   setLogin(auth);
-  // }, [auth]);
-  // console.log(login);
-
-  // const onLogout = () => {
-  //   localStorage.clear();
-  //   setLogin(null);
-  // };
-
   return (
     <Nav>
       <div className={menuIcon ? "navbar active" : "navbar"}>
@@ -218,12 +205,10 @@ const Nav = () => {
           <li>
             <NavLink to="/cart" className="navbar-link cart-trolley--link">
               <FiShoppingCart className="cart-trolley" />
-              {/* <span className="cart-total--item">0</span> */}
             </NavLink>
           </li>
         </ul>
 
-        {/* two button for open and close of menu */}
         <div className="mobile-navbar-btn">
           <CgMenu
             name="menu-outline"

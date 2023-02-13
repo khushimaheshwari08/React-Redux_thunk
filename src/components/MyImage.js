@@ -24,7 +24,6 @@ const MyImage = ({ imgs = [{ url: "" }] }) => {
           })}
       </div>
       <div className="main-screen">
-        {/* <img src={mainImage.url} alt={mainImage.filename} /> */}
         {imgs && imgs.length !== 0 ? (
           <img src={imgs[0].url} alt="image" />
         ) : null}

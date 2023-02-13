@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { FaMinus, FaPlus } from "react-icons/fa";
 
-const CartToggleAmount = ({amount, setIncrease, setDecrease}) => {
+const CartToggleAmount = ({ amount, setIncrease, setDecrease }) => {
   return (
     <div className="cart-button">
       <div className="amount-toggle">

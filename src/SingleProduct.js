@@ -8,7 +8,6 @@ import PageNavigation from "./components/PageNavigation";
 import FormatPrice from "./Helpers/FormatPrice";
 import MyImage from "./components/MyImage";
 import AddToCart from "./components/AddToCart";
-import { useDispatch } from "react-redux";
 
 const SingleProduct = (props) => {
   const { id } = useParams();
@@ -113,21 +112,6 @@ const SingleProduct = (props) => {
               </p>
             </div>
             <hr />
-            {/* {props.singleProductResponse ? (
-              props.singleProductResponse.stock > 0 ? (
-               
-               ) : null
-            ) : (
-              ""
-            )}  */}
-            {/* <div>
-              <CartToggleAmount />
-              <NavLink to="/cart">
-                <Button className="btn" onClick={onCart}>
-                  Add To Cart
-                </Button>
-              </NavLink>
-            </div> */}
             {props.singleProductResponse &&
             props.singleProductResponse.stock > 0 ? (
               <AddToCart />

@@ -4,8 +4,8 @@ export const instance = axios.create({
   baseURL: "https://api.pujakaitem.com/api/",
 });
 
-export const axiosCall = (method, url, type,  headers,data,) => {
-//   console.log(method, url, type, data, headers);
+export const axiosCall = (method, url, type, headers, data) => {
+  //   console.log(method, url, type, data, headers);
 
   return async (dispatch) => {
     const apiData = data
@@ -15,7 +15,7 @@ export const axiosCall = (method, url, type,  headers,data,) => {
     instance(apiData)
       .then((response) => {
         if (response.status == 200) {
-        //   console.log(response);
+          //   console.log(response);
           dispatch({
             type: `${type}_SUCCESS`,
             payload: response.data,

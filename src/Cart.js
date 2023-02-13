@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { Button } from "./styles/Button";
 import { useEffect, useState } from "react";
 import CartItem from "./components/CartItem";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import FormatPrice from "./Helpers/FormatPrice";
 
 const Cart = () => {
@@ -14,32 +14,6 @@ const Cart = () => {
 
   const cartProduct = useSelector((state) => state.cart.cartItems);
   // console.log(cartProduct);
-
-  // const selectedItem = useSelector((state)=> state.cart.cartItems)
-  // console.log(selectedItem)
-
-  // useEffect(() => {
-  //   props.addToCartAction(selectedItem);
-  // }, []);
-
-  // console.log(props.cartResponse,"CartResponse")
-
-  // useEffect(() => {
-  //   addToCartAction();
-  //   localStorage.setItem("Cartvalue", JSON.stringify(selectedItem));
-  // }, []);
-
-  // useEffect(() => {
-  //   console.log("CartItems", selectedItem);
-  // }, [selectedItem]);
-
-  // const setDecrease = () => {
-  //   amount > 1 ? setAmount(amount - 1) : setAmount(1);
-  // };
-
-  // const setIncrease = () => {
-  //   amount ? setAmount(amount + 1) : setAmount();
-  // };
 
   useEffect(() => {
     let sum = 0;
@@ -81,7 +55,6 @@ const Cart = () => {
           <NavLink to="/">
             <Button onClick={() => navigate("/")}>Continue Shopping</Button>
           </NavLink>
-          {/* <Button className="btn btn-clear">Clear Cart</Button> */}
         </div>
         <div className="order-total--amount">
           <div className="order-total--subdata">

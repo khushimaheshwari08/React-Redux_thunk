@@ -20,15 +20,6 @@ const Login = () => {
     }
   };
 
-  // const onHome = () => {
-  //   if (email === "DEMO@123" && password === "DEMO@123") {
-  //     localStorage.setItem("loginResponse", true);
-  //     navigate("/");
-  //   } else {
-  //     alert("Enter valid username and password");
-  //   }
-  // };
-
   return (
     <Grid item md={8} sx={{ mt: 20 }}>
       <Typography

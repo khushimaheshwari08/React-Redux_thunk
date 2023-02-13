@@ -1,27 +1,39 @@
 import React from "react";
 import styled from "styled-components";
 import { BsFillGridFill, BsList } from "react-icons/bs";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  setGridView,
+  setListView,
+  sorting,
+} from "../redux/modules/Product/FilterAction";
 
 const Sort = () => {
+  const dispatch = useDispatch();
+  const productView = useSelector((state) => state.filter.grid_view);
+  // console.log(productView);
+  const productDetail = useSelector((state) => state.product.featureProducts);
+  // console.log(productDetail);
+
   return (
     <Wrapper className="sort-section">
       <div className="sorting-list--grid">
         <button
-        //   className={grid_view ? "active sort-btn" : "sort-btn"}
-        //   onClick={setGridView}
+          className={productView.true ? "active sort-btn" : "sort-btn"}
+          onClick={() => dispatch(setGridView())}
         >
           <BsFillGridFill className="icon" />
         </button>
 
         <button
-        //   className={!grid_view ? "active sort-btn" : "sort-btn"}
-        //   onClick={setListView}
+          className={productView.false ? "active sort-btn" : "sort-btn"}
+          onClick={() => dispatch(setListView())}
         >
           <BsList className="icon" />
         </button>
       </div>
       <div className="product-data">
-        <p> Product Available</p>
+        <p>{`${productDetail.length} Product Available`}</p>
       </div>
       <div className="sort-selection">
         <form action="#">
@@ -30,7 +42,7 @@ const Sort = () => {
             name="sort"
             id="sort"
             className="sort-selection--style"
-            // onClick={sorting}
+            onChange={(e) => dispatch(sorting(e))}
           >
             <option value="lowest">Price(lowest)</option>
             <option value="#" disabled></option>

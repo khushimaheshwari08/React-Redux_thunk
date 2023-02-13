@@ -5,12 +5,14 @@ import productReducer from "./modules/Product/FeatureProductReducer";
 import singleProductReducer from "./modules/Product/SingleProductReducer";
 import authReducer from "./modules/Login/LoginReducer";
 import cartReducer from "./modules/Product/CartReducer";
+import filterReducer from "./modules/Product/FilterReducer";
 
 const rootReducer = combineReducers({
   product: productReducer,
   singleProduct: singleProductReducer,
+  filter: filterReducer,
   auth: authReducer,
-  cart:cartReducer,
+  cart: cartReducer,
 });
 const store = createStore(
   rootReducer,

@@ -7,32 +7,12 @@ const FilterSection = () => {
     <Wrapper>
       <div className="filter-search">
         <form>
-          <input
-            type="text"
-            name="text"
-            placeholder="Search"
-            // value={text}
-            // onChange={updateFilterValue}
-          />
+          <input type="text" name="text" placeholder="Search" />
         </form>
       </div>
       <div className="filter-category">
         <h3>Category</h3>
-        <div>
-          {/* {categoryData.map((curElem, index) => {
-            return (
-              <button
-                key={index}
-                type="button"
-                name="category"
-                value={curElem}
-                onClick={updateFilterValue}
-              >
-                {curElem}
-              </button>
-            );
-          })} */}
-        </div>
+        <div></div>
       </div>
       <div className="filter-company">
         <h3>Company</h3>
@@ -41,16 +21,7 @@ const FilterSection = () => {
             name="company"
             id="company"
             className="filter-company--select"
-            // onClick={updateFilterValue}
-          >
-            {/* {companyData.map((curElem, index) => {
-              return (
-                <option key={index} value={curElem} name="company">
-                  {curElem}
-                </option>
-              );
-            })} */}
-          </select>
+          ></select>
         </form>
       </div>
       <div className="filter_price">
@@ -58,14 +29,7 @@ const FilterSection = () => {
         <p>
           <FormatPrice />
         </p>
-        <input
-          type="range"
-          name="price"
-          //   min={minPrice}
-          //   max={maxPrice}
-          //   value={price}
-          //   onChange={updateFilterValue}
-        />
+        <input type="range" name="price" />
       </div>
       <div className="clear-filter">
         <Button className="btn">Clear Filters</Button>

@@ -12,11 +12,6 @@ import {
 const CartItem = ({ data }) => {
   const dispatch = useDispatch();
 
-  // const productStock = useSelector(
-  //   (state) => state.singleProduct.singleProducts.stock
-  // );
-  // console.log(productStock)
-
   const setDecrease = () => {
     if (data.qty !== 1) {
       dispatch(decreaseCartProduct(data.id));
