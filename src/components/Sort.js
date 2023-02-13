@@ -35,7 +35,7 @@ const Sort = () => {
       <div className="product-data">
         <p>{`${productDetail.length} Product Available`}</p>
       </div>
-      <div className="sort-selection">
+      {/* <div className="sort-selection">
         <form action="#">
           <label htmlFor="sort"></label>
           <select
@@ -53,7 +53,7 @@ const Sort = () => {
             <option value="z-a">Price(z-a)</option>
           </select>
         </form>
-      </div>
+      </div> */}
     </Wrapper>
   );
 };

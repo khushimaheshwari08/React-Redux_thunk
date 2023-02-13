@@ -8,7 +8,7 @@ const Products = () => {
     <Wrapper>
       <div className="container grid grid-filter-column">
         <div>
-          <FilterSection />
+          {/* <FilterSection /> */}
         </div>
         <section className="prouct-view--sort">
           <div className="sort-filter">
