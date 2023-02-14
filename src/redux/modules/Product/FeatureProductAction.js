@@ -49,18 +49,3 @@ export const removeCartProduct = (id) => {
   };
 };
 
-export const sorting = (event) => {
-  let userValue = event.target.value;
-  // console.log(userValue);
-  return {
-    type: "GET_SORT_VALUE",
-    payload: userValue,
-  };
-};
-
-export const sortingProducts = (data) => {
-  return{
-    type:"SORTING_PRODUCTS",
-    payload:data
-  }
-}

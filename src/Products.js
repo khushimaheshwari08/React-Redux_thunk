@@ -1,9 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import FilterSection from "./components/FilterSection";
 import ProductList from "./components/ProductList";
 import Sort from "./components/Sort";
+import { productAction } from "./redux/modules/Product/FeatureProductAction";
+import { getAllProductsData } from "./redux/modules/Product/FilterAction";
 const Products = () => {
+  const dispatch = useDispatch();
+
+  const productList = useSelector((state) => state.product.featureProducts);
+
+  useEffect(() => {
+    dispatch(productAction());
+  }, []);
+
+  useEffect(() => {
+    dispatch(getAllProductsData(productList));
+  }, [productList]);
+
   return (
     <Wrapper>
       <div className="container grid grid-filter-column">

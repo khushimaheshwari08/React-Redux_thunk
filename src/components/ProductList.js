@@ -7,7 +7,7 @@ const ProductList = () => {
   const productView = useSelector((state) => state.filter.grid_view);
   // console.log(productView);
 
-  const productDetail = useSelector((state) => state.product.featureProducts);
+  const productDetail = useSelector((state) => state.filter.filter_products);
   // console.log(productDetail);
 
   if (productView === true) {

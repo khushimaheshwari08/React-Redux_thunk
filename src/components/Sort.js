@@ -5,17 +5,20 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   setGridView,
   setListView,
+  sorting,
+  sortingProducts,
 } from "../redux/modules/Product/FilterAction";
-import { sorting } from "../redux/modules/Product/FeatureProductAction";
-
 const Sort = () => {
   const dispatch = useDispatch();
   const productViewandSort = useSelector((state) => state.filter);
   // console.log(productViewandSort);
-  const productDetail = useSelector((state) => state.product.featureProducts);
+  const productDetail = useSelector((state) => state.filter.filter_products);
   // console.log(productDetail);
 
-
+const sortData = (e)=> {
+  dispatch(sorting(e))
+  dispatch(sortingProducts())
+}
 
   return (
     <Wrapper className="sort-section">
@@ -48,7 +51,7 @@ const Sort = () => {
             name="sort"
             id="sort"
             className="sort-selection--style"
-            onChange={(e) => dispatch(sorting(e))}
+            onChange={sortData}
           >
             <option value="lowest">Price(lowest)</option>
             <option value="#" disabled></option>

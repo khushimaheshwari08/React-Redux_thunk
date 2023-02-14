@@ -10,18 +10,25 @@ export const setListView = () => {
   };
 };
 
-// export const sorting = (event) => {
-//   let userValue = event.target.value;
-//   // console.log(userValue);
-//   return {
-//     type: "GET_SORT_VALUE",
-//     payload: userValue,
-//   };
-// };
+export const sorting = (event) => {
+  let userValue = event.target.value;
+  // console.log(userValue);
+  return {
+    type: "GET_SORT_VALUE",
+    payload: userValue,
+  };
+};
 
-// export const sortingValues = (sortingvalue) =>{
-//   return{
-//     type:"SORTING_PRODUCTS",
-//     payload:{sorting_value:sortingvalue}
-//   }
-// }
+export const sortingProducts = (data) =>{
+  return{
+    type:"SORTING_PRODUCTS",
+    payload:data
+  }
+}
+
+export const getAllProductsData =(data) =>{
+  return {
+    type:"LOAD_ALL_PRODUCT_DATA",
+    payload:data
+  }
+}
