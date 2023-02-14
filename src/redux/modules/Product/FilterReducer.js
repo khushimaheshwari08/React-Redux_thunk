@@ -1,7 +1,7 @@
 const initialState = {
   grid_view: true,
   sorting_value: "lowest",
-  filter_products:[]
+  filter_products: [],
 };
 
 export default (state = initialState, { type, payload }) => {
@@ -18,21 +18,21 @@ export default (state = initialState, { type, payload }) => {
         grid_view: false,
       };
 
-      case "LOAD_ALL_PRODUCT_DATA" : 
+    case "LOAD_ALL_PRODUCT_DATA":
       return {
         ...state,
-        filter_products:payload
-      }
+        filter_products: payload,
+      };
 
-      case "GET_SORT_VALUE":
-        return{
-          ...state,
-          sorting_value:payload
-        }
+    case "GET_SORT_VALUE":
+      return {
+        ...state,
+        sorting_value: payload,
+      };
 
     case "SORTING_PRODUCTS":
       let newSortData;
-      const { filter_products,sorting_value } = state;
+      const { filter_products, sorting_value } = state;
       let tempSortProduct = [...filter_products];
 
       const sortingProducts = (a, b) => {

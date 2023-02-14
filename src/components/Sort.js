@@ -15,10 +15,10 @@ const Sort = () => {
   const productDetail = useSelector((state) => state.filter.filter_products);
   // console.log(productDetail);
 
-const sortData = (e)=> {
-  dispatch(sorting(e))
-  dispatch(sortingProducts())
-}
+  const sortData = (e) => {
+    dispatch(sorting(e));
+    dispatch(sortingProducts());
+  };
 
   return (
     <Wrapper className="sort-section">

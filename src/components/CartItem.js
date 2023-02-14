@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import FormatPrice from "../Helpers/FormatPrice";
 import { FaTrash } from "react-icons/fa";
 import CartToggleAmount from "./CartToggleAmount";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import {
   decreaseCartProduct,
   increaseCartProduct,

@@ -19,16 +19,16 @@ export const sorting = (event) => {
   };
 };
 
-export const sortingProducts = (data) =>{
-  return{
-    type:"SORTING_PRODUCTS",
-    payload:data
-  }
-}
-
-export const getAllProductsData =(data) =>{
+export const sortingProducts = (data) => {
   return {
-    type:"LOAD_ALL_PRODUCT_DATA",
-    payload:data
-  }
-}
+    type: "SORTING_PRODUCTS",
+    payload: data,
+  };
+};
+
+export const getAllProductsData = (data) => {
+  return {
+    type: "LOAD_ALL_PRODUCT_DATA",
+    payload: data,
+  };
+};

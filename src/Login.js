@@ -35,7 +35,7 @@ const Login = () => {
         <Typography sx={{ fontWeight: "bold", mb: 1 }}>Email</Typography>
         <TextField
           id="outlined-basic"
-          placeholder="email"
+          placeholder="DEMO@123"
           variant="outlined"
           sx={{ mb: 3, width: "400px" }}
           onChange={(e) => setEmail(e.target.value)}
@@ -46,7 +46,7 @@ const Login = () => {
         </Typography>
         <TextField
           id="outlined-basic"
-          placeholder="password"
+          placeholder="DEMO@123"
           variant="outlined"
           sx={{ mb: 3, width: "400px" }}
           onChange={(e) => setPassword(e.target.value)}

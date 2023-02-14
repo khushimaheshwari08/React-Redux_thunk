@@ -48,4 +48,3 @@ export const removeCartProduct = (id) => {
     payload: id,
   };
 };
-
