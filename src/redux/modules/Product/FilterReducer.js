@@ -24,6 +24,12 @@ export default (state = initialState, { type, payload }) => {
         filter_products:payload
       }
 
+      case "GET_SORT_VALUE":
+        return{
+          ...state,
+          sorting_value:payload
+        }
+
     case "SORTING_PRODUCTS":
       let newSortData;
       const { filter_products,sorting_value } = state;
