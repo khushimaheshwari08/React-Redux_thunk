@@ -1,32 +1,38 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { BsFillGridFill, BsList } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
 import {
   setGridView,
   setListView,
-  sorting,
 } from "../redux/modules/Product/FilterAction";
+import { sorting } from "../redux/modules/Product/FeatureProductAction";
 
 const Sort = () => {
   const dispatch = useDispatch();
-  const productView = useSelector((state) => state.filter.grid_view);
-  // console.log(productView);
+  const productViewandSort = useSelector((state) => state.filter);
+  // console.log(productViewandSort);
   const productDetail = useSelector((state) => state.product.featureProducts);
   // console.log(productDetail);
+
+
 
   return (
     <Wrapper className="sort-section">
       <div className="sorting-list--grid">
         <button
-          className={productView.true ? "active sort-btn" : "sort-btn"}
+          className={
+            productViewandSort.grid_view.true ? "active sort-btn" : "sort-btn"
+          }
           onClick={() => dispatch(setGridView())}
         >
           <BsFillGridFill className="icon" />
         </button>
 
         <button
-          className={productView.false ? "active sort-btn" : "sort-btn"}
+          className={
+            productViewandSort.grid_view.false ? "active sort-btn" : "sort-btn"
+          }
           onClick={() => dispatch(setListView())}
         >
           <BsList className="icon" />
@@ -35,7 +41,7 @@ const Sort = () => {
       <div className="product-data">
         <p>{`${productDetail.length} Product Available`}</p>
       </div>
-      {/* <div className="sort-selection">
+      <div className="sort-selection">
         <form action="#">
           <label htmlFor="sort"></label>
           <select
@@ -48,12 +54,12 @@ const Sort = () => {
             <option value="#" disabled></option>
             <option value="highest">Price(highest)</option>
             <option value="#" disabled></option>
-            <option value="a-z">Price(a-z)</option>
+            <option value="a-z">Alphabetically(a-z)</option>
             <option value="#" disabled></option>
-            <option value="z-a">Price(z-a)</option>
+            <option value="z-a">Alphabetically(z-a)</option>
           </select>
         </form>
-      </div> */}
+      </div>
     </Wrapper>
   );
 };
