@@ -31,6 +31,7 @@ export default (state = initialState, { type, payload }) => {
       return {
         ...state,
         filter_products: payload,
+        all_products: payload,
       };
 
     case "GET_SORT_VALUE":
@@ -79,19 +80,11 @@ export default (state = initialState, { type, payload }) => {
         },
       };
 
-      
-      case "LOAD_ALL_FILTER_PRODUCT_DATA":
-        return {
-          ...state,
-          all_products: payload,
-        };
-      
-
     case "FILTER_PRODUCTS":
       let { all_products } = state;
       let tempFilterProduct = [...all_products];
 
-      const { text,  } = state.filters;
+      const { text } = state.filters;
       if (text) {
         tempFilterProduct = tempFilterProduct.filter((curElem) => {
           return curElem.name.toLowerCase().includes(text);
@@ -121,7 +114,6 @@ export default (state = initialState, { type, payload }) => {
         ...state,
         filter_products: tempFilterProduct,
       };
-
 
     default:
       return state;

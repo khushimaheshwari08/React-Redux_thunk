@@ -2,21 +2,22 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import FormatPrice from "../Helpers/FormatPrice";
-import {  updateFilterValues } from "../redux/modules/Product/FilterAction";
+import {
+  filterProducts,
+  updateFilterValues,
+} from "../redux/modules/Product/FilterAction";
 import { Button } from "../styles/Button";
 
 const FilterSection = () => {
   const dispatch = useDispatch();
 
-  const productDetail = useSelector((state) => state.filter);
-  console.log(productDetail)
-
   const productText = useSelector((state) => state.filter.filters.text);
   // console.log(productText);
 
-  const filterproducts = useSelector((state) => state.filter.all_products)
-  console.log(filterproducts);
-
+  const handleFilter = (e) => {
+    dispatch(updateFilterValues(e));
+    dispatch(filterProducts());
+  };
 
   return (
     <Wrapper>
@@ -27,7 +28,7 @@ const FilterSection = () => {
             name="text"
             placeholder="Search"
             value={productText}
-            onChange={(e) => dispatch(updateFilterValues(e))}
+            onChange={handleFilter}
           />
         </form>
       </div>

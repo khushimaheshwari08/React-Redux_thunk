@@ -17,7 +17,7 @@ const Products = () => {
 
   useEffect(() => {
     dispatch(getAllProductsData(productList));
-    dispatch(getAllFilterProductsData(productList))
+    // dispatch(getAllFilterProductsData(productList))
   }, [productList]);
 
   return (
