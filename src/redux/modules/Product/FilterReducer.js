@@ -2,6 +2,15 @@ const initialState = {
   grid_view: true,
   sorting_value: "lowest",
   filter_products: [],
+  all_products: [],
+  filters: {
+    text: "",
+    // category: "all",
+    // company: "all",
+    // maxPrice: 0,
+    // price: 0,
+    // minPrice: 0,
+  },
 };
 
 export default (state = initialState, { type, payload }) => {
@@ -59,6 +68,60 @@ export default (state = initialState, { type, payload }) => {
         ...state,
         filter_products: newSortData,
       };
+
+    case "UPDATE_FILTERS_VALUE":
+      const { name, value } = payload;
+      return {
+        ...state,
+        filters: {
+          ...state.filters,
+          [name]: value,
+        },
+      };
+
+      
+      case "LOAD_ALL_FILTER_PRODUCT_DATA":
+        return {
+          ...state,
+          all_products: payload,
+        };
+      
+
+    case "FILTER_PRODUCTS":
+      let { all_products } = state;
+      let tempFilterProduct = [...all_products];
+
+      const { text,  } = state.filters;
+      if (text) {
+        tempFilterProduct = tempFilterProduct.filter((curElem) => {
+          return curElem.name.toLowerCase().includes(text);
+        });
+      }
+      // if (category !== "all") {
+      //   tempFilterProduct = tempFilterProduct.filter((curElem) => {
+      //     return curElem.category === category;
+      //   });
+      // }
+      // if (company !== "all") {
+      //   tempFilterProduct = tempFilterProduct.filter((curElem) => {
+      //     return curElem.company.toLowerCase() === company.toLowerCase();
+      //   });
+      // }
+      // if (color !== "all") {
+      //   tempFilterProduct = tempFilterProduct.filter((curElem) =>
+      //     curElem.colors.includes(color)
+      //   );
+      // }
+      // if (price) {
+      //   tempFilterProduct = tempFilterProduct.filter((curElem) =>
+      //     curElem.price <= price
+      //   );
+      // }
+      return {
+        ...state,
+        filter_products: tempFilterProduct,
+      };
+
 
     default:
       return state;

@@ -5,7 +5,7 @@ import FilterSection from "./components/FilterSection";
 import ProductList from "./components/ProductList";
 import Sort from "./components/Sort";
 import { productAction } from "./redux/modules/Product/FeatureProductAction";
-import { getAllProductsData } from "./redux/modules/Product/FilterAction";
+import { getAllFilterProductsData, getAllProductsData } from "./redux/modules/Product/FilterAction";
 const Products = () => {
   const dispatch = useDispatch();
 
@@ -17,6 +17,7 @@ const Products = () => {
 
   useEffect(() => {
     dispatch(getAllProductsData(productList));
+    dispatch(getAllFilterProductsData(productList))
   }, [productList]);
 
   return (

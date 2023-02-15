@@ -32,3 +32,26 @@ export const getAllProductsData = (data) => {
     payload: data,
   };
 };
+
+export const getAllFilterProductsData = (data) => {
+  return {
+    type: "LOAD_ALL_FILTER_PRODUCT_DATA",
+    payload: data,
+  };
+};
+
+export const updateFilterValues = (event) => {
+  let name = event.target.name;
+  let value = event.target.value;
+  return {
+    type: "UPDATE_FILTERS_VALUE",
+    payload: { name, value },
+  };
+};
+
+export const filterProducts = (data) => {
+  return {
+    type: "FILTER_PRODUCTS",
+    payload: data,
+  };
+};

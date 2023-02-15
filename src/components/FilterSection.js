@@ -1,13 +1,34 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import FormatPrice from "../Helpers/FormatPrice";
+import {  updateFilterValues } from "../redux/modules/Product/FilterAction";
 import { Button } from "../styles/Button";
+
 const FilterSection = () => {
+  const dispatch = useDispatch();
+
+  const productDetail = useSelector((state) => state.filter);
+  console.log(productDetail)
+
+  const productText = useSelector((state) => state.filter.filters.text);
+  // console.log(productText);
+
+  const filterproducts = useSelector((state) => state.filter.all_products)
+  console.log(filterproducts);
+
+
   return (
     <Wrapper>
       <div className="filter-search">
-        <form>
-          <input type="text" name="text" placeholder="Search" />
+        <form onSubmit={(e) => e.preventDefault()}>
+          <input
+            type="text"
+            name="text"
+            placeholder="Search"
+            value={productText}
+            onChange={(e) => dispatch(updateFilterValues(e))}
+          />
         </form>
       </div>
       <div className="filter-category">
