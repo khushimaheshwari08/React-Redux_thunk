@@ -5,6 +5,7 @@ import FormatPrice from "../Helpers/FormatPrice";
 import {
   clearFilters,
   filterProducts,
+  getAllProductsData,
   updateFilterValues,
 } from "../redux/modules/Product/FilterAction";
 import { Button } from "../styles/Button";
@@ -13,10 +14,12 @@ const FilterSection = () => {
   const dispatch = useDispatch();
 
   const productData = useSelector((state) => state.filter.filters);
-  console.log(productData);
+  // console.log(productData);
 
   const allProducts = useSelector((state) => state.filter.all_products);
   // console.log(allProducts);
+
+  const productList = useSelector((state) => state.product.featureProducts);
 
   const handleFilter = (e) => {
     dispatch(updateFilterValues(e));
@@ -30,9 +33,11 @@ const FilterSection = () => {
     return (newVal = ["all", ...new Set(newVal)]);
   };
 
-  // const clearFilter = () => {
-  //   dispatch(clearFilters());
-  // };
+
+  const handleClearFilter = () =>{
+    dispatch(getAllProductsData(productList));
+    dispatch(clearFilters())
+  }
 
   const categoryData = getUniqueData(allProducts, "category");
   const companyData = getUniqueData(allProducts, "company");
@@ -75,7 +80,7 @@ const FilterSection = () => {
             name="company"
             id="company"
             className="filter-company--select"
-            onClick={handleFilter}
+            onChange={handleFilter}
           >
             {companyData.map((curElem, index) => {
               return (
@@ -102,7 +107,7 @@ const FilterSection = () => {
         />
       </div>
       <div className="clear-filter">
-        <Button className="btn" onClick={()=> dispatch(clearFilters())}>
+        <Button className="btn" onClick={handleClearFilter}>
           Clear Filters
         </Button>
       </div>
