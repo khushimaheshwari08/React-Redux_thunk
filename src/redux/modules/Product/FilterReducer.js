@@ -5,11 +5,11 @@ const initialState = {
   all_products: [],
   filters: {
     text: "",
-    // category: "all",
-    // company: "all",
-    // maxPrice: 0,
-    // price: 0,
-    // minPrice: 0,
+    category: "all",
+    company: "all",
+    maxPrice: 0,
+    price: 0,
+    minPrice: 0,
   },
 };
 
@@ -28,10 +28,15 @@ export default (state = initialState, { type, payload }) => {
       };
 
     case "LOAD_ALL_PRODUCT_DATA":
+      let priceArr = payload.map((curElem) => curElem.price);
+      let maxPrice = Math.max(...priceArr);
+      let minPrice = Math.min(...priceArr);
+      // console.log(maxPrice);
       return {
         ...state,
         filter_products: payload,
         all_products: payload,
+        filters: { ...state.filters, maxPrice, price: maxPrice, minPrice },
       };
 
     case "GET_SORT_VALUE":
@@ -84,35 +89,45 @@ export default (state = initialState, { type, payload }) => {
       let { all_products } = state;
       let tempFilterProduct = [...all_products];
 
-      const { text } = state.filters;
+      const { text, category, company, price } = state.filters;
       if (text) {
         tempFilterProduct = tempFilterProduct.filter((curElem) => {
           return curElem.name.toLowerCase().includes(text);
         });
       }
-      // if (category !== "all") {
-      //   tempFilterProduct = tempFilterProduct.filter((curElem) => {
-      //     return curElem.category === category;
-      //   });
-      // }
-      // if (company !== "all") {
-      //   tempFilterProduct = tempFilterProduct.filter((curElem) => {
-      //     return curElem.company.toLowerCase() === company.toLowerCase();
-      //   });
-      // }
-      // if (color !== "all") {
-      //   tempFilterProduct = tempFilterProduct.filter((curElem) =>
-      //     curElem.colors.includes(color)
-      //   );
-      // }
-      // if (price) {
-      //   tempFilterProduct = tempFilterProduct.filter((curElem) =>
-      //     curElem.price <= price
-      //   );
-      // }
+      if (category !== "all") {
+        tempFilterProduct = tempFilterProduct.filter((curElem) => {
+          return curElem.category === category;
+        });
+      }
+      if (company !== "all") {
+        tempFilterProduct = tempFilterProduct.filter((curElem) => {
+          return curElem.company.toLowerCase() === company.toLowerCase();
+        });
+      }
+      if (price) {
+        tempFilterProduct = tempFilterProduct.filter(
+          (curElem) => curElem.price <= price
+        );
+      }
       return {
         ...state,
         filter_products: tempFilterProduct,
+      };
+
+    case "CLEAR_FILTERS":
+      console.log("Clear filter");
+      return {
+        ...state,
+        filters: {
+          ...state.filters,
+          text: "",
+          category: "all",
+          company: "all",
+          maxPrice: state.filters.maxPrice,
+          price: state.filters.maxPrice,
+          minPrice: state.filters.minPrice,
+        },
       };
 
     default:

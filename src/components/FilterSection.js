@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import FormatPrice from "../Helpers/FormatPrice";
 import {
+  clearFilters,
   filterProducts,
   updateFilterValues,
 } from "../redux/modules/Product/FilterAction";
@@ -11,13 +12,30 @@ import { Button } from "../styles/Button";
 const FilterSection = () => {
   const dispatch = useDispatch();
 
-  const productText = useSelector((state) => state.filter.filters.text);
-  // console.log(productText);
+  const productData = useSelector((state) => state.filter.filters);
+  console.log(productData);
+
+  const allProducts = useSelector((state) => state.filter.all_products);
+  // console.log(allProducts);
 
   const handleFilter = (e) => {
     dispatch(updateFilterValues(e));
     dispatch(filterProducts());
   };
+
+  const getUniqueData = (data, attr) => {
+    let newVal = data.map((curElem) => {
+      return curElem[attr];
+    });
+    return (newVal = ["all", ...new Set(newVal)]);
+  };
+
+  // const clearFilter = () => {
+  //   dispatch(clearFilters());
+  // };
+
+  const categoryData = getUniqueData(allProducts, "category");
+  const companyData = getUniqueData(allProducts, "company");
 
   return (
     <Wrapper>
@@ -27,14 +45,28 @@ const FilterSection = () => {
             type="text"
             name="text"
             placeholder="Search"
-            value={productText}
+            value={productData.text}
             onChange={handleFilter}
           />
         </form>
       </div>
       <div className="filter-category">
         <h3>Category</h3>
-        <div></div>
+        <div>
+          {categoryData.map((curElem, index) => {
+            return (
+              <button
+                key={index}
+                type="button"
+                name="category"
+                value={curElem}
+                onClick={handleFilter}
+              >
+                {curElem}
+              </button>
+            );
+          })}
+        </div>
       </div>
       <div className="filter-company">
         <h3>Company</h3>
@@ -43,18 +75,36 @@ const FilterSection = () => {
             name="company"
             id="company"
             className="filter-company--select"
-          ></select>
+            onClick={handleFilter}
+          >
+            {companyData.map((curElem, index) => {
+              return (
+                <option key={index} value={curElem} name="company">
+                  {curElem}
+                </option>
+              );
+            })}
+          </select>
         </form>
       </div>
       <div className="filter_price">
         <h3>Price</h3>
         <p>
-          <FormatPrice />
+          <FormatPrice price={productData.price} />
         </p>
-        <input type="range" name="price" />
+        <input
+          type="range"
+          name="price"
+          min={productData.minPrice}
+          max={productData.maxPrice}
+          value={productData.price}
+          onChange={handleFilter}
+        />
       </div>
       <div className="clear-filter">
-        <Button className="btn">Clear Filters</Button>
+        <Button className="btn" onClick={()=> dispatch(clearFilters())}>
+          Clear Filters
+        </Button>
       </div>
     </Wrapper>
   );

@@ -48,3 +48,9 @@ export const filterProducts = (data) => {
     payload: data,
   };
 };
+
+export const clearFilters = () => {
+  return {
+    type: "CLEAR_FILTERS",
+  };
+};
