@@ -1,5 +1,5 @@
 const initialState = {
-  featureProducts: [],  
+  featureProducts: [],
 };
 
 export default (state = initialState, { type, payload }) => {

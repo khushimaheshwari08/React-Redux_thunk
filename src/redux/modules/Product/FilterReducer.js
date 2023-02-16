@@ -116,7 +116,6 @@ export default (state = initialState, { type, payload }) => {
       };
 
     case "CLEAR_FILTERS":
-      console.log("Clear filter");
       return {
         ...state,
         filters: {

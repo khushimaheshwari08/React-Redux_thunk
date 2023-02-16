@@ -33,11 +33,10 @@ const FilterSection = () => {
     return (newVal = ["all", ...new Set(newVal)]);
   };
 
-
-  const handleClearFilter = () =>{
+  const handleClearFilter = () => {
     dispatch(getAllProductsData(productList));
-    dispatch(clearFilters())
-  }
+    dispatch(clearFilters());
+  };
 
   const categoryData = getUniqueData(allProducts, "category");
   const companyData = getUniqueData(allProducts, "company");
